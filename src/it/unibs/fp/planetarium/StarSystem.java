@@ -26,9 +26,10 @@ public class StarSystem {
     }
 
     public Position getCenterOfMass() {
-        int dimentions = star.getPosition().getDimensions();
-        Position ret = new Position(dimentions);
-        for (int i = 0; i < dimentions; i++) {
+        int dimensions = star.getPosition().getDimensions();
+        Position ret = new Position(dimensions);
+
+        for (int i = 0; i < dimensions; i++) {
             double sommaPesata = 0;
             sommaPesata += star.getPosition().getCoordinate(i) * star.getMass();
             for (int j = 0; j < star.getPlanets().size(); j++) {
@@ -47,5 +48,31 @@ public class StarSystem {
 
     public String toString() {
         return name + " - " + star.toString();
+    }
+
+    public String path(String search) {
+        boolean found = false;
+        if (Objects.equals(search, star.getName())){
+            System.out.println(star.getName());
+        } else {
+            for (int i = 0; i < star.getPlanets().size(); i++) {
+                if (Objects.equals(search, star.getPlanets().get(i).getName())) {
+                    System.out.println(star.getName() + ">" + star.getPlanets().get(i).getName());
+                    found = true;
+                    break;
+                }
+            }
+        }
+        if (!found) {
+            for (int j = 0; j < star.getPlanets().size(); j++){
+                for (int k = 0; k < star.getPlanets().get(j).getMoons().size(); k++) {
+                    if (Objects.equals(search, star.getPlanets().get(j).getMoons().get(k).getName())) {
+                        System.out.println(star.getName() + ">" + star.getPlanets().get(j).getName() + ">" + star.getPlanets().get(j).getMoons().get(k).getName());
+                        break;
+                    }
+                }
+            }
+        }
+        return "";
     }
 }

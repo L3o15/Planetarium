@@ -17,6 +17,10 @@ public class Planet extends CelestialBody{
         return moons;
     }
 
+    public Moon getMoon(int index) {
+        return moons.get(index);
+    }
+
     public boolean removeMoon(int index) {
         return moons.remove(index) != null;
     }
@@ -33,6 +37,7 @@ public class Planet extends CelestialBody{
     public double getTotalMass() {
         double totalMass = super.getMass();
         for (int i = 0; i < moons.size(); i++) {
+            System.out.println(moons.get(i));
             totalMass += moons.get(i).getMass();
         }
         return totalMass;

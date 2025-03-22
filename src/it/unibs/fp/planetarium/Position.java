@@ -18,7 +18,7 @@ public class Position {
     }
 
     public void setCoordinate(int index, double value) {
-        coordinates[index] = value;
+        coordinates.add(index, value);
     }
 
     public double distance(Position other) {
