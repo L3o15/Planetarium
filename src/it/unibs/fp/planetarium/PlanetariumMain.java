@@ -37,8 +37,10 @@ public class PlanetariumMain {
                                 position.setCoordinate(j , Double.parseDouble(parts[j + 3]));
                             }
 
+
                             Star star = new Star(parts[1], Double.parseDouble(parts[2]), position);
-                            corps.put(star,parts[3 + dimensions]);
+                            corps.put(star, parts[3 + dimensions]);
+                            break;
                         }
                         case "planet": {
                             Position position = new Position(dimensions);
@@ -49,6 +51,7 @@ public class PlanetariumMain {
 
                             Planet planet = new Planet(parts[1], Double.parseDouble(parts[2]), position);
                             corps.put(planet, parts[3 + dimensions]);
+                            break;
                         }
                         case "moon": {
                             Position position = new Position(dimensions);
@@ -66,7 +69,6 @@ public class PlanetariumMain {
 
             for (var corp : corps.keySet()) {
                 if (corp instanceof Star) {
-                    System.out.println("star");
                     StarSystem starSystem = new StarSystem(corps.get(corp), (Star) corp);
                     starSystems.add(starSystem);
                 }
@@ -74,12 +76,12 @@ public class PlanetariumMain {
 
             for (var corp : corps.keySet()) {
                 if (corp instanceof Planet) {
-                    System.out.println("planet");
                     var value = corps.get(corp);
 
                     for (StarSystem system : starSystems) {
-                        if (system.getName().equals(value)) {
-                            system.getStar().addPlanet((Planet) corp);
+                        var star = system.getStar();
+                        if (star.getName().equals(value)) {
+                            star.addPlanet((Planet) corp);
                         }
                     }
                 }
@@ -87,7 +89,6 @@ public class PlanetariumMain {
 
             for (var corp : corps.keySet()) {
                 if (corp instanceof Moon) {
-                    System.out.println("moon");
                     var value = corps.get(corp);
                     for (StarSystem system : starSystems) {
                         Star star = system.getStar();

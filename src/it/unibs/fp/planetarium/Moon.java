@@ -7,6 +7,6 @@ public class Moon extends CelestialBody{
 
     @Override
     public String toString() {
-        return null;
+        return super.getName() + " (" + super.getMass() + " kg) at " + super.getPosition().toString();
     }
 }

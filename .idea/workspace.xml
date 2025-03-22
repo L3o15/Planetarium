@@ -4,19 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ff44cc5-7764-4145-8682-4f34b035468a" name="Changes" comment="First commit">
-      <change afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="6ff44cc5-7764-4145-8682-4f34b035468a" name="Changes" comment="Input from file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Moon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Moon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Planet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Planet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Position.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Star.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Star.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/StarSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/StarSystem.java" afterDir="false" />
     </list>
     <list id="0786a752-60b2-4e9d-9b16-657954ee8b91" name="Changes by albertobrumana" comment="">
       <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Moon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Moon.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Planet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Planet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Position.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Star.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Star.java" afterDir="false" />
     </list>
@@ -57,9 +56,14 @@
         <range start1="4" end1="6" start2="5" end2="8" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
         <range start1="8" end1="9" start2="10" end2="11" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
         <range start1="15" end1="16" start2="17" end2="18" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
-        <range start1="18" end1="18" start2="20" end2="24" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
-        <range start1="34" end1="34" start2="40" end2="41" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
-        <range start1="35" end1="35" start2="42" end2="43" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
+        <range start1="33" end1="34" start2="35" end2="36" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
+        <range start1="39" end1="40" start2="41" end2="41" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Moon.java">
+      <ranges>
+        <range start1="2" end1="3" start2="2" end2="3" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
+        <range start1="9" end1="10" start2="9" end2="10" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
       </ranges>
     </file>
     <file path="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Star.java">
@@ -69,28 +73,20 @@
         <range start1="6" end1="7" start2="7" end2="7" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
         <range start1="9" end1="10" start2="9" end2="10" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
         <range start1="16" end1="17" start2="16" end2="17" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
-        <range start1="19" end1="19" start2="19" end2="23" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
-        <range start1="30" end1="30" start2="34" end2="35" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
-        <range start1="31" end1="31" start2="36" end2="37" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
+        <range start1="34" end1="34" start2="34" end2="35" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
+        <range start1="35" end1="36" start2="36" end2="36" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
       </ranges>
     </file>
-    <file path="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Position.java">
+    <file path="$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java">
       <ranges>
-        <range start1="2" end1="2" start2="2" end2="4" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
-        <range start1="3" end1="4" start2="5" end2="6" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
-        <range start1="8" end1="9" start2="10" end2="11" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
-        <range start1="16" end1="17" start2="18" end2="19" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
-        <range start1="20" end1="21" start2="22" end2="23" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
-        <range start1="25" end1="25" start2="27" end2="28" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
-        <range start1="26" end1="27" start2="29" end2="30" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
-        <range start1="34" end1="35" start2="37" end2="38" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/it/unibs/fp/planetarium/StarSystem.java">
-      <ranges>
-        <range start1="2" end1="2" start2="2" end2="5" changelist="87d53fef-5902-4914-94f9-a7ef238c4eeb" />
-        <range start1="28" end1="31" start2="31" end2="35" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
-        <range start1="50" end1="50" start2="54" end2="79" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
+        <range start1="38" end1="38" start2="38" end2="39" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
+        <range start1="40" end1="41" start2="41" end2="43" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
+        <range start1="51" end1="51" start2="53" end2="54" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
+        <range start1="61" end1="61" start2="64" end2="66" changelist="0786a752-60b2-4e9d-9b16-657954ee8b91" />
+        <range start1="68" end1="69" start2="73" end2="73" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
+        <range start1="76" end1="77" start2="80" end2="80" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
+        <range start1="80" end1="82" start2="83" end2="86" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
+        <range start1="89" end1="90" start2="93" end2="93" changelist="6ff44cc5-7764-4145-8682-4f34b035468a" />
       </ranges>
     </file>
   </component>
@@ -176,7 +172,7 @@
       <option name="presentableId" value="Default" />
       <updated>1742639710032</updated>
       <workItem from="1742639711252" duration="5792000" />
-      <workItem from="1742648283427" duration="5659000" />
+      <workItem from="1742648283427" duration="7553000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1742644812814</created>
@@ -185,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742644812814</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Input from file">
+      <option name="closed" value="true" />
+      <created>1742654100260</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1742654100260</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,20 +216,26 @@
       <path value="$PROJECT_DIR$/src/KiboPgArLib" />
     </ignored-roots>
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="Input from file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Input from file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java</url>
-          <line>18</line>
-          <option name="timeStamp" value="6" />
+          <line>85</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java</url>
-          <line>19</line>
-          <option name="timeStamp" value="7" />
+          <line>99</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

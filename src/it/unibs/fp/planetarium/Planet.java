@@ -31,13 +31,12 @@ public class Planet extends CelestialBody{
 
     @Override
     public String toString() {
-        return null;
+        return super.getName() + " (" + super.getMass() + " kg) at " + super.getPosition().toString();
     }
 
     public double getTotalMass() {
         double totalMass = super.getMass();
         for (int i = 0; i < moons.size(); i++) {
-            System.out.println(moons.get(i));
             totalMass += moons.get(i).getMass();
         }
         return totalMass;

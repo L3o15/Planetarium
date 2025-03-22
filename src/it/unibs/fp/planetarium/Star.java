@@ -32,8 +32,8 @@ public class Star extends CelestialBody{
 
     public double getTotalMass() {
         double totalMass = super.getMass();
+        System.out.println(planets.size());
         for (int i = 0; i < planets.size(); i++) {
-            System.out.println(planets.get(i));
             totalMass += planets.get(i).getTotalMass();
         }
         return totalMass;
