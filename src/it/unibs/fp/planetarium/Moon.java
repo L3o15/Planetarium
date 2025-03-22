@@ -1,6 +1,6 @@
 package it.unibs.fp.planetarium;
 
-public class Moon extends CelestialBody{
+public class Moon extends CelestialBody {
     public Moon(String name, double mass, Position position) {
         super(name, mass, position);
     }

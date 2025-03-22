@@ -1,19 +1,21 @@
 package it.unibs.fp.planetarium;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
-public class Planet extends CelestialBody{
-    private final Vector<Moon> moons;
+public class Planet extends CelestialBody {
+    private final ArrayList<Moon> moons;
+
     public Planet(String name, double mass, Position position) {
         super(name, mass, position);
-        this.moons = new Vector<>();
+        this.moons = new ArrayList<>();
     }
 
     public void addMoon(Moon moon) {
         moons.add(moon);
     }
 
-    public Vector<Moon> getMoons() {
+    public ArrayList<Moon> getMoons() {
         return moons;
     }
 

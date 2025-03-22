@@ -62,6 +62,8 @@ public class PlanetariumMain {
 
                             Moon moon = new Moon(parts[1], Double.parseDouble(parts[2]), position);
                             corps.put(moon, parts[3 + dimensions]);
+
+                            break;
                         }
                     }
                 }

@@ -1,20 +1,20 @@
 package it.unibs.fp.planetarium;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
-public class Star extends CelestialBody{
+public class Star extends CelestialBody {
+    private final ArrayList<Planet> planets;
 
-    private final Vector<Planet> planets;
     public Star(String name, double mass, Position position) {
         super(name, mass, position);
-        this.planets = new Vector<>();
+        this.planets = new ArrayList<>();
     }
 
     public void addPlanet(Planet planet) {
         planets.add(planet);
     }
 
-    public Vector<Planet> getPlanets() {
+    public ArrayList<Planet> getPlanets() {
         return planets;
     }
 

@@ -1,5 +1,8 @@
 package it.unibs.fp.planetarium;
 
+import java.util.Objects;
+import java.util.Scanner;
+
 public class StarSystem {
     private String name;
     private final Star star;
@@ -50,29 +53,28 @@ public class StarSystem {
         return name + " - " + star.toString();
     }
 
-    public String path(String search) {
-        boolean found = false;
+    public String printPath(String search) {
         if (Objects.equals(search, star.getName())){
             System.out.println(star.getName());
-        } else {
-            for (int i = 0; i < star.getPlanets().size(); i++) {
-                if (Objects.equals(search, star.getPlanets().get(i).getName())) {
-                    System.out.println(star.getName() + ">" + star.getPlanets().get(i).getName());
-                    found = true;
-                    break;
+            return "";
+        }
+
+        for (int i = 0; i < star.getPlanets().size(); i++) {
+            if (Objects.equals(search, star.getPlanets().get(i).getName())) {
+                System.out.println(star.getName() + ">" + star.getPlanets().get(i).getName());
+                return "";
+            }
+        }
+
+        for (int j = 0; j < star.getPlanets().size(); j++){
+            for (int k = 0; k < star.getPlanets().get(j).getMoons().size(); k++) {
+                if (Objects.equals(search, star.getPlanets().get(j).getMoons().get(k).getName())) {
+                    System.out.println(star.getName() + ">" + star.getPlanets().get(j).getName() + ">" + star.getPlanets().get(j).getMoons().get(k).getName());
+                    return "";
                 }
             }
         }
-        if (!found) {
-            for (int j = 0; j < star.getPlanets().size(); j++){
-                for (int k = 0; k < star.getPlanets().get(j).getMoons().size(); k++) {
-                    if (Objects.equals(search, star.getPlanets().get(j).getMoons().get(k).getName())) {
-                        System.out.println(star.getName() + ">" + star.getPlanets().get(j).getName() + ">" + star.getPlanets().get(j).getMoons().get(k).getName());
-                        break;
-                    }
-                }
-            }
-        }
+
         return "";
     }
 }
