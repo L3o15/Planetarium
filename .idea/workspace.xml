@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ff44cc5-7764-4145-8682-4f34b035468a" name="Changes" comment="Refactoring">
+    <list default="true" id="6ff44cc5-7764-4145-8682-4f34b035468a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/kibo/pgar/lib/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/kibo/pgar/lib/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Planet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Planet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Star.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Star.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/StarSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/StarSystem.java" afterDir="false" />
     </list>
-    <list id="87d53fef-5902-4914-94f9-a7ef238c4eeb" name="Changes by Samuel" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,6 +41,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -51,36 +53,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.PlanetariumMain.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;19&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.PlanetariumMain.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "19",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/leonardo-orizio/Desktop/Scuola/UniBs/PrimoAnno/Fondamenti di info/ProgettoArnaldo/planetarium/src/com/kibo/pgar/lib",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="it.unibs.fp.planetarium" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/com/kibo/pgar/lib" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/it/unibs/fp/planetarium" />
     </key>
   </component>
@@ -123,7 +129,8 @@
       <workItem from="1742639711252" duration="5792000" />
       <workItem from="1742648283427" duration="7683000" />
       <workItem from="1742806973320" duration="44000" />
-      <workItem from="1742807036327" duration="2536000" />
+      <workItem from="1742807036327" duration="2884000" />
+      <workItem from="1742832045711" duration="2945000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1742644812814</created>
@@ -164,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742808190931</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="New features">
+      <option name="closed" value="true" />
+      <created>1742809779792</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1742809779792</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,6 +209,7 @@
     <MESSAGE value="Input from file" />
     <MESSAGE value="Bug fixing" />
     <MESSAGE value="Refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring" />
+    <MESSAGE value="New features" />
+    <option name="LAST_COMMIT_MESSAGE" value="New features" />
   </component>
 </project>
