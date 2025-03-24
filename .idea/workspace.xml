@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ff44cc5-7764-4145-8682-4f34b035468a" name="Changes" comment="Bug fixing">
-      <change afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/SystemBuilder.java" afterDir="false" />
+    <list default="true" id="6ff44cc5-7764-4145-8682-4f34b035468a" name="Changes" comment="Refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Planet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Planet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Star.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Star.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/StarSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/StarSystem.java" afterDir="false" />
     </list>
     <list id="87d53fef-5902-4914-94f9-a7ef238c4eeb" name="Changes by Samuel" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +123,7 @@
       <workItem from="1742639711252" duration="5792000" />
       <workItem from="1742648283427" duration="7683000" />
       <workItem from="1742806973320" duration="44000" />
-      <workItem from="1742807036327" duration="1121000" />
+      <workItem from="1742807036327" duration="2536000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1742644812814</created>
@@ -154,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742655924263</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Refactoring">
+      <option name="closed" value="true" />
+      <created>1742808190931</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1742808190931</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,6 +193,7 @@
     <MESSAGE value="First commit" />
     <MESSAGE value="Input from file" />
     <MESSAGE value="Bug fixing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fixing" />
+    <MESSAGE value="Refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring" />
   </component>
 </project>

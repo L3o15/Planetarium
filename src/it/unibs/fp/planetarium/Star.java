@@ -11,6 +11,24 @@ public class Star extends CelestialBody {
     }
 
     public void addPlanet(Planet planet) {
+        boolean validName = true;
+        for (Planet p : planets) {
+            if (p.getName().equals(planet.getName())) {
+                validName = false;
+                break;
+            }
+            for (Moon m : p.getMoons()) {
+                if (m.getName().equals(planet.getName())) {
+                    validName = false;
+                    break;
+                }
+            }
+        }
+
+        if (!validName) {
+            throw new IllegalArgumentException("Name already in use");
+        }
+
         planets.add(planet);
     }
 

@@ -7,5 +7,10 @@ public class PlanetariumMain {
         ArrayList<StarSystem> starSystems = SystemBuilder.build("input.txt");
 
         System.out.println("Planetarium app!");
+
+        for (StarSystem starSystem : starSystems) {
+            System.out.println(starSystem.getPath("StarMain"));
+
+        }
     }
 }

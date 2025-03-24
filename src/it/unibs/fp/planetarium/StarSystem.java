@@ -1,8 +1,5 @@
 package it.unibs.fp.planetarium;
 
-import java.util.Objects;
-import java.util.Scanner;
-
 public class StarSystem {
     private String name;
     private final Star star;
@@ -53,28 +50,90 @@ public class StarSystem {
         return name + " - " + star.toString();
     }
 
-    public String printPath(String search) {
-        if (Objects.equals(search, star.getName())){
-            System.out.println(star.getName());
-            return "";
+    public String getPath(String search) {
+        if (star.getName().equals(search)) {
+            return name + ">" + star.getName();
         }
 
         for (int i = 0; i < star.getPlanets().size(); i++) {
-            if (Objects.equals(search, star.getPlanets().get(i).getName())) {
-                System.out.println(star.getName() + ">" + star.getPlanets().get(i).getName());
-                return "";
+            if (star.getPlanets().get(i).getName().equals(search)) {
+                return name + ">" + star.getName() + ">" + star.getPlanets().get(i).getName();
             }
         }
 
         for (int j = 0; j < star.getPlanets().size(); j++){
             for (int k = 0; k < star.getPlanets().get(j).getMoons().size(); k++) {
-                if (Objects.equals(search, star.getPlanets().get(j).getMoons().get(k).getName())) {
-                    System.out.println(star.getName() + ">" + star.getPlanets().get(j).getName() + ">" + star.getPlanets().get(j).getMoons().get(k).getName());
-                    return "";
+                if (star.getPlanets().get(j).getMoons().get(k).getName().equals(search)) {
+                    return name + ">" + star.getName() + ">" + star.getPlanets().get(j).getName() + ">" + star.getPlanets().get(j).getMoons().get(k).getName();
                 }
             }
         }
+        return "Corp not found";
+    }
 
-        return "";
+    public boolean addCorp(CelestialBody body, String connectedTo) {
+        if (connectedTo.equals(name)){
+            throw new RuntimeException("This star system already has a star");
+        }
+        if (connectedTo.equals(star.getName())) {
+            if (body instanceof Planet) {
+                star.addPlanet((Planet) body);
+                return true;
+            }
+            if (body instanceof Moon) {
+                throw new RuntimeException("Cannot add a moon to a star");
+            }
+        }
+        for (int i = 0; i < star.getPlanets().size(); i++) {
+            if (connectedTo.equals(star.getPlanets().get(i).getName())) {
+                if (body instanceof Moon) {
+                    star.getPlanets().get(i).addMoon((Moon) body);
+                    return true;
+                }
+                if (body instanceof Planet) {
+                    throw new RuntimeException("Cannot add a planet to a planet");
+                }
+            }
+        }
+        return false;
+    }
+
+    public CelestialBody getCorp(String name) {
+        if (star.getName().equals(name)) {
+            return star;
+        } else {
+            for (int i = 0; i < star.getPlanets().size(); i++) {
+                if (star.getPlanets().get(i).getName().equals(name)) {
+                    return star.getPlanets().get(i);
+                }
+                for (int j = 0; j < star.getPlanets().get(i).getMoons().size(); j++) {
+                    if (star.getPlanets().get(i).getMoons().get(j).getName().equals(name)) {
+                        return star.getPlanets().get(i).getMoons().get(j);
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public CelestialBody getConnectedBody(CelestialBody body){
+        if (body instanceof Star){
+            return null;
+        } else {
+            for (int i = 0; i < star.getPlanets().size(); i++){
+                if (star.getPlanets().get(i).equals(body)){
+                    return star;
+                }
+                if (body instanceof Moon){
+                    for (int j = 0; j < star.getPlanets().get(i).getMoons().size(); j++){
+                        if (star.getPlanets().get(i).getMoons().get(j).equals(body)){
+                            return star.getPlanets().get(i);
+                        }
+                    }
+                }
+
+            }
+        }
+        return null;
     }
 }

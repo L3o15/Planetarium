@@ -1,7 +1,6 @@
 package it.unibs.fp.planetarium;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class Planet extends CelestialBody {
     private final ArrayList<Moon> moons;
@@ -12,6 +11,18 @@ public class Planet extends CelestialBody {
     }
 
     public void addMoon(Moon moon) {
+        boolean validName = true;
+        for (Moon m : moons) {
+            if (m.getName().equals(moon.getName())) {
+                validName = false;
+                break;
+            }
+        }
+
+        if (!validName) {
+            throw new IllegalArgumentException("Name already in use");
+        }
+
         moons.add(moon);
     }
 
