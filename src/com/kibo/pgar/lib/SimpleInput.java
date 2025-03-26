@@ -11,7 +11,7 @@ import java.util.*;
  */
 
 public class SimpleInput {
-    private static Scanner scanner = creaScanner();
+    private static final Scanner scanner = creaScanner();
 
     private final static String ERROR_FORMAT = "Warning the input given is not the correct format";
     private final static String ERROR_MIN = "Warning the input is lower than: ";

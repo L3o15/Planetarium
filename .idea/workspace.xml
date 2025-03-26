@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ff44cc5-7764-4145-8682-4f34b035468a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/kibo/pgar/lib/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/kibo/pgar/lib/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/kibo/pgar/lib/SimpleInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kibo/pgar/lib/SimpleInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Star.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/Star.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,9 +61,10 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "19",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/leonardo-orizio/Desktop/Scuola/UniBs/PrimoAnno/Fondamenti di info/ProgettoArnaldo/planetarium/src/com/kibo/pgar/lib",
+    "last_opened_file_path": "C:/Users/alby0/Desktop/Planetarium",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -131,6 +131,7 @@
       <workItem from="1742806973320" duration="44000" />
       <workItem from="1742807036327" duration="2884000" />
       <workItem from="1742832045711" duration="2945000" />
+      <workItem from="1743003208672" duration="2922000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1742644812814</created>
