@@ -3,6 +3,9 @@ package it.unibs.fp.planetarium;
 import java.util.ArrayList;
 
 public class Star extends CelestialBody {
+    public static final String MSG_NAME_ALREADY_IN_USE = "Name already in use";
+    public static final String OPEN_BRACKET = " (";
+    public static final String MSG_KG_AT = " kg) at ";
     private final ArrayList<Planet> planets;
 
     public Star(String name, double mass, Position position) {
@@ -26,7 +29,7 @@ public class Star extends CelestialBody {
         }
 
         if (!validName) {
-            throw new IllegalArgumentException("Name already in use");
+            throw new IllegalArgumentException(MSG_NAME_ALREADY_IN_USE);
         }
 
         planets.add(planet);
@@ -58,6 +61,6 @@ public class Star extends CelestialBody {
 
     @Override
     public String toString() {
-        return super.getName() + " (" + super.getMass() + " kg) at " + super.getPosition().toString();
+        return super.getName() + OPEN_BRACKET + super.getMass() + MSG_KG_AT + super.getPosition().toString();
     }
 }

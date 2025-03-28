@@ -3,6 +3,8 @@ package it.unibs.fp.planetarium;
 import java.util.ArrayList;
 
 public class Planet extends CelestialBody {
+    public static final String OPEN_BRACKET = " (";
+    public static final String MSG_KG_AT = " kg) at ";
     private final ArrayList<Moon> moons;
 
     public Planet(String name, double mass, Position position) {
@@ -44,7 +46,7 @@ public class Planet extends CelestialBody {
 
     @Override
     public String toString() {
-        return super.getName() + " (" + super.getMass() + " kg) at " + super.getPosition().toString();
+        return super.getName() + OPEN_BRACKET + super.getMass() + MSG_KG_AT + super.getPosition().toString();
     }
 
     public double getTotalMass() {

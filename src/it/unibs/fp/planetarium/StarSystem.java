@@ -1,6 +1,12 @@
 package it.unibs.fp.planetarium;
 
 public class StarSystem {
+    public static final String MINUS_SIGN = " - ";
+    public static final String NEXT = ">";
+    public static final String MSG_CORP_NOT_FOUND = "Corp not found";
+    public static final String MSG_STAR_SYSTEM_ALREADY_HAS_A_STAR = "This star system already has a star";
+    public static final String MSG_CANNOT_ADD_A_MOON_TO_A_STAR = "Cannot add a moon to a star";
+    public static final String MSG_CANNOT_ADD_PLANET_TO_PLANET = "Cannot add a planet to a planet";
     private String name;
     private final Star star;
 
@@ -47,33 +53,33 @@ public class StarSystem {
     }
 
     public String toString() {
-        return name + " - " + star.toString();
+        return name + MINUS_SIGN + star.toString();
     }
 
     public String getPath(String search) {
         if (star.getName().equals(search)) {
-            return name + ">" + star.getName();
+            return name + NEXT + star.getName();
         }
 
         for (int i = 0; i < star.getPlanets().size(); i++) {
             if (star.getPlanets().get(i).getName().equals(search)) {
-                return name + ">" + star.getName() + ">" + star.getPlanets().get(i).getName();
+                return name + NEXT + star.getName() + NEXT + star.getPlanets().get(i).getName();
             }
         }
 
         for (int j = 0; j < star.getPlanets().size(); j++){
             for (int k = 0; k < star.getPlanets().get(j).getMoons().size(); k++) {
                 if (star.getPlanets().get(j).getMoons().get(k).getName().equals(search)) {
-                    return name + ">" + star.getName() + ">" + star.getPlanets().get(j).getName() + ">" + star.getPlanets().get(j).getMoons().get(k).getName();
+                    return name + NEXT + star.getName() + NEXT + star.getPlanets().get(j).getName() + NEXT + star.getPlanets().get(j).getMoons().get(k).getName();
                 }
             }
         }
-        return "Corp not found";
+        return MSG_CORP_NOT_FOUND;
     }
 
     public boolean addCorp(CelestialBody body, String connectedTo) {
         if (connectedTo.equals(name)){
-            throw new RuntimeException("This star system already has a star");
+            throw new RuntimeException(MSG_STAR_SYSTEM_ALREADY_HAS_A_STAR);
         }
         if (connectedTo.equals(star.getName())) {
             if (body instanceof Planet) {
@@ -81,7 +87,7 @@ public class StarSystem {
                 return true;
             }
             if (body instanceof Moon) {
-                throw new RuntimeException("Cannot add a moon to a star");
+                throw new RuntimeException(MSG_CANNOT_ADD_A_MOON_TO_A_STAR);
             }
         }
         for (int i = 0; i < star.getPlanets().size(); i++) {
@@ -91,7 +97,7 @@ public class StarSystem {
                     return true;
                 }
                 if (body instanceof Planet) {
-                    throw new RuntimeException("Cannot add a planet to a planet");
+                    throw new RuntimeException(MSG_CANNOT_ADD_PLANET_TO_PLANET);
                 }
             }
         }
