@@ -39,6 +39,6 @@ public class Menu {
     }
 
     public void display() {
-        menu.forEach((k, v) -> System.out.println(k + ": " + v + "\n"));
+        menu.forEach((k, v) -> System.out.println(k + ": " + v));
     }
 }

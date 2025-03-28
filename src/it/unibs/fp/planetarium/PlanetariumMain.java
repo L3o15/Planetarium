@@ -1,7 +1,6 @@
 package it.unibs.fp.planetarium;
-
-import com.kibo.pgar.lib.SimpleInput;
 import java.util.ArrayList;
+import it.kibo.fp.lib.InputData;
 
 public class PlanetariumMain {
     public static void main(String[] args) {
@@ -10,7 +9,7 @@ public class PlanetariumMain {
 
         System.out.println("Planetarium app!");
 
-        int choice = 0;
+        int choice;
 
         do {
             menu.display();
@@ -56,7 +55,7 @@ public class PlanetariumMain {
     }
 
     private static void printPathToCelestialBody(ArrayList<StarSystem> starSystems) {
-        String search = SimpleInput.readSting("Enter search: ");
+        String search = InputData.readString("Enter search: ", true);
 
         for (StarSystem starSystem : starSystems) {
             System.out.println(starSystem.getPath(search));
@@ -68,7 +67,7 @@ public class PlanetariumMain {
             System.out.println(i + ". " + starSystems.get(i).getStar().toString());
         }
 
-        int starChosen = SimpleInput.readIntMinMax("Choose a star", 0, starSystems.size() - 1, true);
+        int starChosen = InputData.readIntegerBetween("Choose a star", 0, starSystems.size() - 1);
 
         StarSystem starSystem = starSystems.get(starChosen);
         System.out.println(starSystem.getCenterOfMass().toString());
@@ -91,14 +90,14 @@ public class PlanetariumMain {
             System.out.println(i + ". " + starSystems.get(i).getStar().toString());
         }
 
-        int starChosen = SimpleInput.readIntMinMax("Choose a star", 0, starSystems.size() - 1, true);
+        int starChosen = InputData.readIntegerBetween("Choose a star", 0, starSystems.size() - 1);
         Star star = starSystems.get(starChosen).getStar();
 
         for (int i = 0; i < star.getPlanets().size(); i++) {
             System.out.println(i + ". " + star.getPlanets().get(i).toString());
         }
 
-        int planetChosen = SimpleInput.readIntMinMax("Choose a planet", 0, star.getPlanets().size() - 1, true);
+        int planetChosen = InputData.readIntegerBetween("Choose a planet", 0, star.getPlanets().size() - 1);
         Planet planet = star.getPlanets().get(planetChosen);
 
         for (Moon moon : planet.getMoons()) {
@@ -112,7 +111,7 @@ public class PlanetariumMain {
             System.out.println(i + ". " + star.toString());
         }
 
-        int starChosen = SimpleInput.readIntMinMax("Choose a star", 0, starSystems.size() - 1, true);
+        int starChosen = InputData.readIntegerBetween("Choose a star", 0, starSystems.size() - 1);
         Star star = starSystems.get(starChosen).getStar();
 
         for (Planet planet : star.getPlanets()) {
@@ -125,7 +124,7 @@ public class PlanetariumMain {
             StarSystem starSystem = starSystems.get(i);
             System.out.println(i + ". " + starSystem.getStar().toString());
         }
-        int starSystemChosen = SimpleInput.readIntMinMax("Choose a star system", 0, starSystems.size() - 1, true);
+        int starSystemChosen = InputData.readIntegerBetween("Choose a star system", 0, starSystems.size() - 1);
         StarSystem starSystem = starSystems.get(starSystemChosen);
         System.out.println(starSystem.getStar().toString());
     }
