@@ -6,11 +6,13 @@ public class PlanetariumMain {
 
     public static final String FILE = "input.txt";
     public static final String MSG_PLANETARIUM_APP = "Planetarium app!";
-    public static final String MSG_ENTER_SEARCH = "Enter search: ";
-    public static final String MSG_CHOOSE_A_STAR = "Choose a star";
+    public static final String MSG_CHOOSE_A_STAR = "Choose a star: ";
     public static final String MSG_DOT = ". ";
-    public static final String MSG_CHOOSE_A_PLANET = "Choose a planet";
-    public static final String MSG_CHOOSE_A_STAR_SYSTEM = "Choose a star system";
+    public static final String MSG_CHOOSE_A_PLANET = "Choose a planet: ";
+    public static final String MSG_CHOOSE_A_STAR_SYSTEM = "Choose a star system_ ";
+    public static final String MSG_CHOOSE_A_CELESTIAL_CORP = "Choose a celestial corp: ";
+    public static final String MSG_COLLIDES_WITH = "collides with";
+    public static final String MSG_NOT_COLLIDE_WITH = "doesn't collide with";
 
     public static void main(String[] args) {
         ArrayList<StarSystem> starSystems = SystemBuilder.build(FILE);
@@ -53,8 +55,10 @@ public class PlanetariumMain {
                     printPathToCelestialBody(starSystems);
                     break;
                 case 8:
+                    printPathBetweenCelestialBody(starSystems);
                     break;
                 case 9:
+                    printDistanceInPath(starSystems);
                     break;
                 case 10:
                     break;
@@ -68,26 +72,57 @@ public class PlanetariumMain {
         } while (choice != 0);
     }
 
+    private static void printDistanceInPath(ArrayList<StarSystem> starSystems) {
+        StarSystem starSystem = getStarSystem(starSystems);
+        CelestialBody from = getCelestialBody(starSystem);
+        CelestialBody to = getCelestialBody(starSystem);
+        System.out.println(starSystem.getDistanceBetween(from.toString(), to.toString()));
+    }
+
+    private static void printPathBetweenCelestialBody(ArrayList<StarSystem> starSystems) {
+        StarSystem starSystem = getStarSystem(starSystems);
+
+        CelestialBody celestialBodyFrom = getCelestialBody(starSystem);
+
+        CelestialBody celestialBodyTo = getCelestialBody(starSystem);
+
+        System.out.println(starSystem.getPathBetweenToString(celestialBodyFrom.getName(), celestialBodyTo.getName()));
+    }
+
+    private static StarSystem getStarSystem(ArrayList<StarSystem> starSystems) {
+        for (int i = 0; i < starSystems.size(); i++) {
+            System.out.println(i + MSG_DOT + starSystems.get(i).toString());
+        }
+
+        int choose = InputData.readIntegerBetween(MSG_CHOOSE_A_STAR_SYSTEM, 0, starSystems.size() - 1);
+
+         return starSystems.get(choose);
+    }
+
+    private static CelestialBody getCelestialBody(StarSystem starSystem) {
+        int choose;
+        for (int i = 0; i < starSystem.getAllCorps().size(); i++) {
+            System.out.println(i + MSG_DOT + starSystem.getAllCorps().get(i).getName());
+        }
+
+        choose = InputData.readIntegerBetween(MSG_CHOOSE_A_CELESTIAL_CORP, 0, starSystem.getAllCorps().size() - 1);
+
+        return starSystem.getAllCorps().get(choose);
+    }
+
     private static void greet(){
         System.out.println(MSG_PLANETARIUM_APP);
     }
 
     private static void printPathToCelestialBody(ArrayList<StarSystem> starSystems) {
-        String search = InputData.readString(MSG_ENTER_SEARCH, true);
+        StarSystem starSystem = getStarSystem(starSystems);
+        CelestialBody celestialBody = getCelestialBody(starSystem);
 
-        for (StarSystem starSystem : starSystems) {
-            System.out.println(starSystem.getPath(search));
-        }
+        System.out.println(starSystem.getPathString(celestialBody.getName()));
     }
 
     private static void printCenterOfMassStarSystem(ArrayList<StarSystem> starSystems) {
-        for (int i = 0; i < starSystems.size(); i++) {
-            System.out.println(i + MSG_DOT + starSystems.get(i).getStar().toString());
-        }
-
-        int starChosen = InputData.readIntegerBetween(MSG_CHOOSE_A_STAR, 0, starSystems.size() - 1);
-
-        StarSystem starSystem = starSystems.get(starChosen);
+        StarSystem starSystem = getStarSystem(starSystems);
         System.out.println(starSystem.getCenterOfMass().toString());
     }
 
@@ -104,33 +139,36 @@ public class PlanetariumMain {
     }
 
     private static void printMoonsOfPlanet(ArrayList<StarSystem> starSystems) {
-        for (int i = 0; i < starSystems.size(); i++) {
-            System.out.println(i + MSG_DOT + starSystems.get(i).getStar().toString());
-        }
+        Star star = getStar(starSystems);
 
-        int starChosen = InputData.readIntegerBetween(MSG_CHOOSE_A_STAR, 0, starSystems.size() - 1);
-        Star star = starSystems.get(starChosen).getStar();
-
-        for (int i = 0; i < star.getPlanets().size(); i++) {
-            System.out.println(i + MSG_DOT + star.getPlanets().get(i).toString());
-        }
-
-        int planetChosen = InputData.readIntegerBetween(MSG_CHOOSE_A_PLANET, 0, star.getPlanets().size() - 1);
-        Planet planet = star.getPlanets().get(planetChosen);
+        Planet planet = getPlanet(star);
 
         for (Moon moon : planet.getMoons()) {
             System.out.println(moon.toString());
         }
     }
 
-    private static void printPlanetsOfStar(ArrayList<StarSystem> starSystems) {
+    private static Planet getPlanet(Star star) {
+        for (int i = 0; i < star.getPlanets().size(); i++) {
+            System.out.println(i + MSG_DOT + star.getPlanets().get(i).toString());
+        }
+
+        int planetChosen = InputData.readIntegerBetween(MSG_CHOOSE_A_PLANET, 0, star.getPlanets().size() - 1);
+        
+        return star.getPlanets().get(planetChosen);
+    }
+
+    private static Star getStar(ArrayList<StarSystem> starSystems) {
         for (int i = 0; i < starSystems.size(); i++) {
-            Star star = starSystems.get(i).getStar();
-            System.out.println(i + MSG_DOT + star.toString());
+            System.out.println(i + MSG_DOT + starSystems.get(i).getStar().toString());
         }
 
         int starChosen = InputData.readIntegerBetween(MSG_CHOOSE_A_STAR, 0, starSystems.size() - 1);
-        Star star = starSystems.get(starChosen).getStar();
+        return starSystems.get(starChosen).getStar();
+    }
+
+    private static void printPlanetsOfStar(ArrayList<StarSystem> starSystems) {
+        Star star = getStar(starSystems);
 
         for (Planet planet : star.getPlanets()) {
             System.out.println(planet.toString());
@@ -138,12 +176,7 @@ public class PlanetariumMain {
     }
 
     private static void printStarOfStarSystem(ArrayList<StarSystem> starSystems) {
-        for (int i = 0; i < starSystems.size(); i++) {
-            StarSystem starSystem = starSystems.get(i);
-            System.out.println(i + MSG_DOT + starSystem.getStar().toString());
-        }
-        int starSystemChosen = InputData.readIntegerBetween(MSG_CHOOSE_A_STAR_SYSTEM, 0, starSystems.size() - 1);
-        StarSystem starSystem = starSystems.get(starSystemChosen);
+        StarSystem starSystem = getStarSystem(starSystems);
         System.out.println(starSystem.getStar().toString());
     }
 

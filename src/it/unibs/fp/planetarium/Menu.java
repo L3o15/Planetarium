@@ -19,6 +19,7 @@ public class Menu {
     public static final String MSG_PRINT_POSSIBLE_COLLISIONS = "Print possible collisions between two celestial bodies";
     public static final String MSG_SELECT_AN_OPTION = "Select an option:\n";
     public static final String DP = ": ";
+    public static final String MSG_SAVE_ON_FILE = "Save on file";
 
     private HashMap<Integer, String> menu = new HashMap<>();
 
@@ -35,6 +36,7 @@ public class Menu {
         menu.put(10, MSG_PRINT_POSSIBLE_COLLISIONS);
         menu.put(11, MSG_ADD_A_CELESTIAL_BODY);
         menu.put(12, MSG_REMOVE_A_CELESTIAL_BODY);
+        menu.put(13, MSG_SAVE_ON_FILE);
         menu.put(0, MSG_EXIT);
     }
     public HashMap<Integer, String> getMenu() {

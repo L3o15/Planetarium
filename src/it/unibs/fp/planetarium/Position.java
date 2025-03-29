@@ -43,4 +43,12 @@ public class Position {
         result.append(")");
         return result.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Position position = (Position) obj;
+        return dimensions == position.dimensions && coordinates.equals(position.coordinates);
+    }
 }
