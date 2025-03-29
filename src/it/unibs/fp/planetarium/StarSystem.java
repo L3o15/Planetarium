@@ -9,6 +9,7 @@ public class StarSystem {
     public static final String MSG_CANNOT_ADD_A_MOON_TO_A_STAR = "Cannot add a moon to a star";
     public static final String MSG_CANNOT_ADD_PLANET_TO_PLANET = "Cannot add a planet to a planet";
     public static final String MSG_ERROR_A_BODY_NULL = "One of the bodies is null";
+    public static final String MSG_ERROR_CANNOT_REMOVE_STAR = "Cannot remove a star";
     private String name;
     private final Star star;
 
@@ -153,16 +154,9 @@ public class StarSystem {
         }
 
         if (body1 instanceof Moon && body2 instanceof Moon) {
-            Planet planet1 = null;
-            Planet planet2 = null;
+            Planet planet1 = getMoonPlanet((Moon) body1);
+            Planet planet2 = getMoonPlanet((Moon) body2);
 
-            for (var planet : star.getPlanets()) {
-                if (planet.getMoons().contains(body1)) {
-                    planet1 = planet;
-                } else if (planet.getMoons().contains(body2)) {
-                    planet2 = planet;
-                }
-            }
 
             if (planet1 != null && planet2 != null) {
 
@@ -327,8 +321,18 @@ public class StarSystem {
                 return p;
             }
         }
-
         return null;
+    }
+
+    public void removeCelestialBody(CelestialBody body) {
+        if (body instanceof Planet) {
+            star.removePlanet((Planet) body);
+        } else if (body instanceof Moon) {
+            Planet planet = getMoonPlanet((Moon) body);
+            if (planet != null) {
+                planet.removeMoon((Moon) body);
+            }
+        }
     }
 
 }

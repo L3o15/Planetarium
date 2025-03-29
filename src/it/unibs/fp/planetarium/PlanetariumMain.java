@@ -2,6 +2,17 @@ package it.unibs.fp.planetarium;
 import java.util.ArrayList;
 import it.kibo.fp.lib.InputData;
 
+/*
+Planetarium 2
+star StarMain 30 0 0 Planetarium
+planet Planet1 5 0 -3 StarMain
+moon Moon1 1 0 -6 Planet1
+planet Planet2 7 0 5 StarMain
+moon Moon3 2 2 3 Planet2
+moon Moon4 1 4 4 Planet2
+
+*/
+
 public class PlanetariumMain {
 
     public static final String FILE = "input.txt";
@@ -13,9 +24,13 @@ public class PlanetariumMain {
     public static final String MSG_CHOOSE_A_CELESTIAL_CORP = "Choose a celestial corp: ";
     public static final String MSG_COLLIDES_WITH = "collides with";
     public static final String MSG_NOT_COLLIDE_WITH = "doesn't collide with";
+    public static final String MSG_ENTER_THE_NAME_OF_THE_PLANET = "Enter the name of the planet: ";
 
     public static void main(String[] args) {
         ArrayList<StarSystem> starSystems = SystemBuilder.build(FILE);
+        if (starSystems.isEmpty()) {
+            addStar(starSystems);
+        }
 
         greet();
 
@@ -65,6 +80,13 @@ public class PlanetariumMain {
                 case 11:
                     break;
                 case 12:
+                    break;
+                case 13:
+//                    try {
+//                        saveOnFile(starSystems);
+//                    } catch (IOException e) {
+//                        throw new RuntimeException(e);
+//                    }
                     break;
                 default:
                     break;
