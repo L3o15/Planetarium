@@ -1,4 +1,7 @@
 package it.unibs.fp.planetarium;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import it.kibo.fp.lib.InputData;
 
@@ -29,7 +32,7 @@ public class PlanetariumMain {
     public static void main(String[] args) {
         ArrayList<StarSystem> starSystems = SystemBuilder.build(FILE);
         if (starSystems.isEmpty()) {
-            addStar(starSystems);
+            //addStar(starSystems);
         }
 
         greet();
@@ -82,11 +85,11 @@ public class PlanetariumMain {
                 case 12:
                     break;
                 case 13:
-//                    try {
-//                        saveOnFile(starSystems);
-//                    } catch (IOException e) {
-//                        throw new RuntimeException(e);
-//                    }
+                    try {
+                        saveOnFile(starSystems);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                     break;
                 default:
                     break;
@@ -206,5 +209,36 @@ public class PlanetariumMain {
         for (StarSystem starSystem : starSystems) {
             System.out.println(starSystem.toString());
         }
+    }
+
+    private static void saveOnFile(ArrayList<StarSystem> starSystems) throws IOException {
+        StringBuilder sb = new StringBuilder();
+
+        for (StarSystem ss : starSystems) {
+            sb.append(ss.getName()).append(" ").append(ss.getStar().getPosition().getDimensions()).append("\n");
+            sb.append("star").append(" ");
+            sb.append(ss.getStar().getName()).append(" ");
+            sb.append(ss.getStar().getMass()).append(" ");
+            sb.append(ss.getStar().getPosition().toString().replace("(", "").replace(")", "").replace(",", "")).append(" ");
+            sb.append(ss.getName()).append("\n");
+
+            for (Planet planet : ss.getStar().getPlanets()) {
+                sb.append("planet").append(" ");
+                sb.append(planet.getName()).append(" ");
+                sb.append(planet.getMass()).append(" ");
+                sb.append(planet.getPosition().toString().replace("(", "").replace(")", "").replace(",", "")).append(" ");
+                sb.append(ss.getStar().getName()).append("\n");
+
+                for (Moon moon : planet.getMoons()) {
+                    sb.append("moon").append(" ");
+                    sb.append(moon.getName()).append(" ");
+                    sb.append(moon.getMass()).append(" ");
+                    sb.append(moon.getPosition().toString().replace("(", "").replace(")", "").replace(",", "")).append(" ");
+                    sb.append(planet.getName()).append("\n");
+                }
+            }
+        }
+
+        Files.write(new File(FILE).toPath(), sb.toString().getBytes());
     }
 }

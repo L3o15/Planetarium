@@ -1,7 +1,7 @@
 Planetarium 2
-star StarMain 30 0 0 Planetarium
-planet Planet1 5 0 -3 StarMain
-moon Moon1 1 0 -6 Planet1
-planet Planet2 7 0 5 StarMain
-moon Moon3 2 2 3 Planet2
-moon Moon4 1 4 4 Planet2
+star StarMain 30.0 0.0 0.0 Planetarium
+planet Planet2 7.0 0.0 5.0 StarMain
+moon Moon4 1.0 4.0 4.0 Planet2
+moon Moon3 2.0 2.0 3.0 Planet2
+planet Planet1 5.0 0.0 -3.0 StarMain
+moon Moon1 1.0 0.0 -6.0 Planet1
