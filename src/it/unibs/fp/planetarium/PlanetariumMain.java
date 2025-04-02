@@ -233,12 +233,16 @@ public class PlanetariumMain {
         StarSystem starSystem = getStarSystem(starSystems);
         CelestialBody celestialBody = getCelestialBody(starSystem);
 
-        if (celestialBody instanceof Star) {
-            addPlanet(celestialBody, starSystem);
-        } else if (celestialBody instanceof Planet) {
-            addMoon(celestialBody, starSystem);
-        } else if (celestialBody instanceof Moon) {
-            System.out.println(MSG_ERROR_ADD_MOON_TO_STAR);
+        try {
+            if (celestialBody instanceof Star) {
+                addPlanet(celestialBody, starSystem);
+            } else if (celestialBody instanceof Planet) {
+                addMoon(celestialBody, starSystem);
+            } else if (celestialBody instanceof Moon) {
+                System.out.println(MSG_ERROR_ADD_MOON_TO_STAR);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -247,12 +251,23 @@ public class PlanetariumMain {
      *
      * @param starSystems La lista dei sistemi stellari.
      */
-    private static void addStar(ArrayList<StarSystem> starSystems) {
+    private static void addStar(ArrayList<StarSystem> starSystems) throws RuntimeException {
         String starSystemName = InputData.readString(MSG_ENTER_THE_NAME_OF_STAR_SYSTEM, true);
         String starName = InputData.readString(MSG_ENTER_THE_NAME_OF_THE_STAR, true);
         double mass = getValidMass();
         int dimensions = InputData.readIntegerWithMinimum("Enter the number of dimensions: ", MIN_DIMENSIONS);
         Position position = getValidPosition(dimensions);
+
+        for (StarSystem s : starSystems) {
+            if (s.getName().equals(starSystemName)) {
+                s.getAllCorps().forEach(c -> {
+                    if (c.getPosition().equals(position)) {
+                        throw new RuntimeException("There's already a corp at the selected position");
+                    }
+                });
+            }
+        }
+
         Star star = new Star(starName, mass, position);
         StarSystem starSystem = new StarSystem(starSystemName, star);
         starSystems.add(starSystem);
@@ -264,11 +279,18 @@ public class PlanetariumMain {
      * @param celestialBody Il corpo celeste a cui aggiungere la luna.
      * @param starSystem Il sistema stellare in cui si trova il corpo celeste.
      */
-    private static void addMoon(CelestialBody celestialBody, StarSystem starSystem) {
+    private static void addMoon(CelestialBody celestialBody, StarSystem starSystem) throws RuntimeException {
         Planet planet = (Planet) celestialBody;
         String planetName = getValidName(starSystem);
         double mass = getValidMass();
         Position position = getValidPosition(starSystem.getStar().getPosition().getDimensions());
+
+        for (CelestialBody cb : starSystem.getAllCorps() ) {
+            if (cb.getPosition().equals(position)) {
+                throw new RuntimeException("There's already a corp at the selected position");
+            }
+        }
+
         Moon moon = new Moon(planetName, mass, position);
         planet.addMoon(moon);
     }
@@ -279,11 +301,18 @@ public class PlanetariumMain {
      * @param celestialBody Il corpo celeste a cui aggiungere il pianeta.
      * @param starSystem Il sistema stellare in cui si trova il corpo celeste.
      */
-    private static void addPlanet(CelestialBody celestialBody, StarSystem starSystem) {
+    private static void addPlanet(CelestialBody celestialBody, StarSystem starSystem) throws RuntimeException {
         Star star = (Star) celestialBody;
         String planetName = getValidName(starSystem);
         double mass = getValidMass();
         Position position = getValidPosition(star.getPosition().getDimensions());
+
+        for (CelestialBody cb : starSystem.getAllCorps() ) {
+            if (cb.getPosition().equals(position)) {
+                throw new RuntimeException("There's already a corp at the selected position");
+            }
+        }
+
         Planet planet = new Planet(planetName, mass, position);
         star.addPlanet(planet);
     }
