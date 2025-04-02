@@ -10,6 +10,7 @@ public class SystemBuilder {
     
     public static ArrayList<StarSystem> build(String url) {
         ArrayList<StarSystem> starSystems = new ArrayList<>();
+
         try {
             ArrayList<String> lines = getLinesFromFile(url);
             HashMap<CelestialBody, String> corps = new HashMap<>();

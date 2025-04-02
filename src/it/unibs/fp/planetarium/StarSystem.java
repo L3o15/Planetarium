@@ -263,6 +263,7 @@ public class StarSystem {
                 if (star.getPlanets().get(i).getName().equals(name)) {
                     return star.getPlanets().get(i);
                 }
+
                 for (int j = 0; j < star.getPlanets().get(i).getMoons().size(); j++) {
                     if (star.getPlanets().get(i).getMoons().get(j).getName().equals(name)) {
                         return star.getPlanets().get(i).getMoons().get(j);
@@ -270,6 +271,7 @@ public class StarSystem {
                 }
             }
         }
+
         return null;
     }
 
@@ -281,6 +283,7 @@ public class StarSystem {
                 if (star.getPlanets().get(i).equals(body)){
                     return star;
                 }
+
                 if (body instanceof Moon){
                     for (int j = 0; j < star.getPlanets().get(i).getMoons().size(); j++){
                         if (star.getPlanets().get(i).getMoons().get(j).equals(body)){
@@ -291,6 +294,7 @@ public class StarSystem {
 
             }
         }
+
         return null;
     }
 

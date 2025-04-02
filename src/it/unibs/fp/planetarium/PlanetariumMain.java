@@ -108,11 +108,14 @@ public class PlanetariumMain {
                 case PRINT_DISTANCE_IN_PATH:
                     printDistanceInPath(starSystems);
                     break;
-                case 10:
+                case PRINT_POSSIBLE_COLLISIONS:
+                    printPossibleCollisions(starSystems);
                     break;
-                case 11:
+                case ADD_CELESTIAL_BODY:
+                    addCelestialBody(starSystems);
                     break;
-                case 12:
+                case REMOVE_CELESTIAL_BODY:
+                    removeCelestialBody(starSystems);
                     break;
                 case SAVE_ON_FILE:
                     try {
@@ -130,6 +133,156 @@ public class PlanetariumMain {
         } while (choice != 0);
     }
 
+    /**
+     * Rimuove un corpo celeste da un sistema stellare.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     */
+    private static void removeCelestialBody(ArrayList<StarSystem> starSystems){
+        StarSystem starSystem = getStarSystem(starSystems);
+        CelestialBody celestialBody = getCelestialBody(starSystem);
+        if (celestialBody instanceof Star) {
+            for (StarSystem s : starSystems) {
+                if (s.getStar().getName().equals(celestialBody.getName())) {
+                    System.out.println(celestialBody.getName() + MSG_REMOVED_FROM + s.getName());
+                    starSystems.remove(s);
+                    break;
+                }
+            }
+
+            if (starSystems.isEmpty()) {
+                addStar(starSystems);
+            }
+        } else {
+            System.out.println(celestialBody.getName() + MSG_REMOVED_FROM + starSystem.getName());
+            starSystem.removeCelestialBody(celestialBody);
+        }
+    }
+
+    /**
+     * Aggiunge un corpo celeste a un sistema stellare.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     */
+    private static void addCelestialBody(ArrayList<StarSystem> starSystems) {
+        StarSystem starSystem = getStarSystem(starSystems);
+        CelestialBody celestialBody = getCelestialBody(starSystem);
+
+        if (celestialBody instanceof Star) {
+            addPlanet(celestialBody, starSystem);
+        } else if (celestialBody instanceof Planet) {
+            addMoon(celestialBody, starSystem);
+        } else if (celestialBody instanceof Moon) {
+            System.out.println(MSG_ERROR_ADD_MOON_TO_STAR);
+        }
+    }
+
+    /**
+     * Aggiunge un sistema stellare alla lista dei sistemi stellari.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     */
+    private static void addStar(ArrayList<StarSystem> starSystems) {
+        String starSystemName = InputData.readString(MSG_ENTER_THE_NAME_OF_STAR_SYSTEM, true);
+        String starName = InputData.readString(MSG_ENTER_THE_NAME_OF_THE_STAR, true);
+        double mass = getValidMass();
+        int dimensions = InputData.readIntegerWithMinimum("Enter the number of dimensions: ", MIN_DIMENSIONS);
+        Position position = getValidPosition(dimensions);
+        Star star = new Star(starName, mass, position);
+        StarSystem starSystem = new StarSystem(starSystemName, star);
+        starSystems.add(starSystem);
+    }
+
+    /**
+     * Aggiunge una luna a un pianeta.
+     *
+     * @param celestialBody Il corpo celeste a cui aggiungere la luna.
+     * @param starSystem Il sistema stellare in cui si trova il corpo celeste.
+     */
+    private static void addMoon(CelestialBody celestialBody, StarSystem starSystem) {
+        Planet planet = (Planet) celestialBody;
+        String planetName = getValidName(starSystem);
+        double mass = getValidMass();
+        Position position = getValidPosition(starSystem.getStar().getPosition().getDimensions());
+        Moon moon = new Moon(planetName, mass, position);
+        planet.addMoon(moon);
+    }
+
+    /**
+     * Aggiunge un pianeta a una stella.
+     *
+     * @param celestialBody Il corpo celeste a cui aggiungere il pianeta.
+     * @param starSystem Il sistema stellare in cui si trova il corpo celeste.
+     */
+    private static void addPlanet(CelestialBody celestialBody, StarSystem starSystem) {
+        Star star = (Star) celestialBody;
+        String planetName = getValidName(starSystem);
+        double mass = getValidMass();
+        Position position = getValidPosition(star.getPosition().getDimensions());
+        Planet planet = new Planet(planetName, mass, position);
+        star.addPlanet(planet);
+    }
+
+    /**
+     * Ottiene un nome valido per un corpo celeste.
+     *
+     * @param starSystem Il sistema stellare in cui si trova il corpo celeste.
+     * @return Il nome valido per il corpo celeste.
+     */
+    private static String getValidName(StarSystem starSystem) {
+        String planetName;
+        do {
+            planetName = InputData.readString(MSG_ENTER_THE_NAME_OF_THE_PLANET, true);
+        } while (starSystem.getCorp(planetName) != null);
+        return planetName;
+    }
+
+    /**
+     * Ottiene una massa valida per un corpo celeste.
+     *
+     * @return La massa valida per il corpo celeste.
+     */
+    private static double getValidMass() {
+        double mass;
+        do {
+            mass = InputData.readDouble(MSG_ENTER_THE_MASS);
+        } while (mass <= 0);
+        return mass;
+    }
+
+    /**
+     * Ottiene una posizione valida per un corpo celeste.
+     *
+     * @param dimensions Le dimensioni della posizione.
+     * @return La posizione valida per il corpo celeste.
+     */
+    private static Position getValidPosition(int dimensions) {
+        Position position = new Position(dimensions);
+        for (int i = 0; i < dimensions; i++) {
+            double coordinate = InputData.readDouble(MSG_ENTER_THE_COORDINATE + (i + 1) + DP);
+            position.setCoordinate(i, coordinate);
+        }
+        return position;
+    }
+
+    /**
+     * Stampa le possibili collisioni tra due corpi celesti.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     */
+    private static void printPossibleCollisions(ArrayList<StarSystem> starSystems) {
+        StarSystem starSystem = getStarSystem(starSystems);
+        CelestialBody celestialBody1 = getCelestialBody(starSystem);
+        CelestialBody celestialBody2 = getCelestialBody(starSystem);
+
+        System.out.println(celestialBody1.getName() + (starSystem.checkCollision(celestialBody1.getName(), celestialBody2.getName()) ? MSG_COLLIDES_WITH : MSG_NOT_COLLIDE_WITH) + celestialBody2.getName());
+    }
+
+    /**
+     * Stampa la distanza tra due corpi celesti in un percorso.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     */
     private static void printDistanceInPath(ArrayList<StarSystem> starSystems) {
         StarSystem starSystem = getStarSystem(starSystems);
         CelestialBody from = getCelestialBody(starSystem);
