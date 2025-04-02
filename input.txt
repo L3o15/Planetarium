@@ -1,2 +1,0 @@
-zazz 2
-star a 10.0 1.0 1.0 zazz

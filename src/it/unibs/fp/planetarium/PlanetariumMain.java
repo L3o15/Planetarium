@@ -67,16 +67,27 @@ public class PlanetariumMain {
      * Inizializza il sistema stellare e gestisce il menu di interazione con l'utente.
      */
     public static void main(String[] args) {
-        ArrayList<StarSystem> starSystems = SystemBuilder.build(FILE);
-        if (starSystems.isEmpty()) {
-            addStar(starSystems);
-        }
-
         greet();
+
+        ArrayList<StarSystem> starSystems = getStarSystems();
 
         Menu menu = new Menu();
 
         handleMenu(menu, starSystems);
+    }
+
+    /**
+     * Ottiene i sistemi stellari da un file o crea un nuovo sistema stellare se il file è vuoto.
+     *
+     * @return La lista dei sistemi stellari.
+     */
+    private static ArrayList<StarSystem> getStarSystems() {
+        ArrayList<StarSystem> starSystems = SystemBuilder.build(FILE);
+
+        if (starSystems.isEmpty()) {
+            addStar(starSystems);
+        }
+        return starSystems;
     }
 
     /**
@@ -141,7 +152,7 @@ public class PlanetariumMain {
                     addStar(starSystems);
                     break;
                 case GET_CORP_BY_NAME:
-                    getCoprByName(starSystems);
+                    getCorpByName(starSystems);
                     break;
                 case GET_MOON_DIPENDENCY:
                     getMoonPlanetDependency(starSystems);
@@ -176,7 +187,7 @@ public class PlanetariumMain {
      *
      * @param starSystems La lista dei sistemi stellari.
      */
-    private static void getCoprByName(ArrayList<StarSystem> starSystems) {
+    private static void getCorpByName(ArrayList<StarSystem> starSystems) {
         StarSystem starSystem = getStarSystem(starSystems);
         String name = InputData.readString(MSG_GET_NAME, true);
         CelestialBody celestialBody = starSystem.getCorp(name);
