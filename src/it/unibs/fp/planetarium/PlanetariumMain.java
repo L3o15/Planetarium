@@ -25,14 +25,44 @@ public class PlanetariumMain {
     public static final String MSG_CHOOSE_A_PLANET = "Choose a planet: ";
     public static final String MSG_CHOOSE_A_STAR_SYSTEM = "Choose a star system_ ";
     public static final String MSG_CHOOSE_A_CELESTIAL_CORP = "Choose a celestial corp: ";
-    public static final String MSG_COLLIDES_WITH = "collides with";
-    public static final String MSG_NOT_COLLIDE_WITH = "doesn't collide with";
+    public static final String MSG_COLLIDES_WITH = " collides with ";
+    public static final String MSG_NOT_COLLIDE_WITH = " doesn't collide with ";
     public static final String MSG_ENTER_THE_NAME_OF_THE_PLANET = "Enter the name of the planet: ";
+    public static final String MSG_ENTER_THE_NAME_OF_THE_STAR = "Enter the name of the star: ";
+    public static final String MSG_REMOVED_FROM = " removed from ";
+    public static final String MSG_ERROR_ADD_MOON_TO_STAR = "You can't add a  celestial body to a moon";
+    public static final String MSG_ENTER_THE_NAME_OF_STAR_SYSTEM = "Enter the name of the star system: ";
+    public static final String MSG_ENTER_THE_MASS = "Enter the mass: ";
+    public static final String MSG_ENTER_THE_COORDINATE = "Enter the coordinate ";
+    public static final String DP = ": ";
+    public static final String STAR = "star";
+    public static final String LINE_BREAK = "\n";
+    public static final String SPACE = " ";
+    public static final String OPEN_BRACKET = "(";
+    public static final String CLOSE_BRACKET = ")";
+    public static final String COMMA = ",";
+    public static final String PLANET = "planet";
+    public static final String MOON = "moon";
+    public static final int MIN_DIMENSIONS = 2;
+    public static final int PRINT_STAR_SYSTEMS = 1;
+    public static final int PRINT_STAR = 2;
+    public static final int PRINT_PLANETS = 3;
+    public static final int PRINT_MOONS = 4;
+    public static final int PRINT_CELESTIAL_BODIES = 5;
+    public static final int PRINT_CENTER_OF_MASS = 6;
+    public static final int PRINT_PATH_TO = 7;
+    public static final int PRINT_PATH_BETWEEN = 8;
+    public static final int PRINT_DISTANCE_IN_PATH = 9;
+    public static final int PRINT_POSSIBLE_COLLISIONS = 10;
+    public static final int ADD_CELESTIAL_BODY = 11;
+    public static final int REMOVE_CELESTIAL_BODY = 12;
+    public static final int SAVE_ON_FILE = 13;
+    public static final int ADD_STAR_SYSTEM = 14;
 
     public static void main(String[] args) {
         ArrayList<StarSystem> starSystems = SystemBuilder.build(FILE);
         if (starSystems.isEmpty()) {
-            //addStar(starSystems);
+            addStar(starSystems);
         }
 
         greet();
@@ -51,31 +81,31 @@ public class PlanetariumMain {
             choice = menu.getChoice();
 
             switch (choice) {
-                case 1:
+                case PRINT_STAR_SYSTEMS:
                     printAllStarSystems(starSystems);
                     break;
-                case 2:
+                case PRINT_STAR:
                     printStarOfStarSystem(starSystems);
                     break;
-                case 3:
+                case PRINT_PLANETS:
                     printPlanetsOfStar(starSystems);
                     break;
-                case 4:
+                case PRINT_MOONS:
                     printMoonsOfPlanet(starSystems);
                     break;
-                case 5:
+                case PRINT_CELESTIAL_BODIES:
                     printCelestialBodiesStarSystem(starSystems);
                     break;
-                case 6:
+                case PRINT_CENTER_OF_MASS:
                     printCenterOfMassStarSystem(starSystems);
                     break;
-                case 7:
+                case PRINT_PATH_TO:
                     printPathToCelestialBody(starSystems);
                     break;
-                case 8:
+                case PRINT_PATH_BETWEEN:
                     printPathBetweenCelestialBody(starSystems);
                     break;
-                case 9:
+                case PRINT_DISTANCE_IN_PATH:
                     printDistanceInPath(starSystems);
                     break;
                 case 10:
@@ -84,12 +114,15 @@ public class PlanetariumMain {
                     break;
                 case 12:
                     break;
-                case 13:
+                case SAVE_ON_FILE:
                     try {
                         saveOnFile(starSystems);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
+                    break;
+                case ADD_STAR_SYSTEM:
+                    addStar(starSystems);
                     break;
                 default:
                     break;
@@ -215,30 +248,31 @@ public class PlanetariumMain {
         StringBuilder sb = new StringBuilder();
 
         for (StarSystem ss : starSystems) {
-            sb.append(ss.getName()).append(" ").append(ss.getStar().getPosition().getDimensions()).append("\n");
-            sb.append("star").append(" ");
-            sb.append(ss.getStar().getName()).append(" ");
-            sb.append(ss.getStar().getMass()).append(" ");
-            sb.append(ss.getStar().getPosition().toString().replace("(", "").replace(")", "").replace(",", "")).append(" ");
-            sb.append(ss.getName()).append("\n");
+            sb.append(ss.getName()).append(" ").append(ss.getStar().getPosition().getDimensions()).append(LINE_BREAK);
+            sb.append(STAR).append(SPACE);
+            sb.append(ss.getStar().getName()).append(SPACE);
+            sb.append(ss.getStar().getMass()).append(SPACE);
+            sb.append(ss.getStar().getPosition().toString().replace(OPEN_BRACKET, "").replace(CLOSE_BRACKET, "").replace(COMMA, "")).append(SPACE);
+            sb.append(ss.getName()).append(LINE_BREAK);
 
             for (Planet planet : ss.getStar().getPlanets()) {
-                sb.append("planet").append(" ");
-                sb.append(planet.getName()).append(" ");
-                sb.append(planet.getMass()).append(" ");
-                sb.append(planet.getPosition().toString().replace("(", "").replace(")", "").replace(",", "")).append(" ");
-                sb.append(ss.getStar().getName()).append("\n");
+                buildString(sb, PLANET, planet.getName(), planet.getMass(), planet.getPosition());
+                sb.append(ss.getStar().getName()).append(LINE_BREAK);
 
                 for (Moon moon : planet.getMoons()) {
-                    sb.append("moon").append(" ");
-                    sb.append(moon.getName()).append(" ");
-                    sb.append(moon.getMass()).append(" ");
-                    sb.append(moon.getPosition().toString().replace("(", "").replace(")", "").replace(",", "")).append(" ");
-                    sb.append(planet.getName()).append("\n");
+                    buildString(sb, MOON, moon.getName(), moon.getMass(), moon.getPosition());
+                    sb.append(planet.getName()).append(LINE_BREAK);
                 }
             }
         }
 
         Files.write(new File(FILE).toPath(), sb.toString().getBytes());
+    }
+
+    private static void buildString(StringBuilder sb, String type, String name, double mass, Position position) {
+        sb.append(type).append(SPACE);
+        sb.append(name).append(SPACE);
+        sb.append(mass).append(SPACE);
+        sb.append(position.toString().replace(OPEN_BRACKET, "").replace(CLOSE_BRACKET, "").replace(COMMA, "")).append(SPACE);
     }
 }

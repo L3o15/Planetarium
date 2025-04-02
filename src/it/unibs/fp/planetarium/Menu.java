@@ -17,6 +17,7 @@ public class Menu {
     public static final String MSG_REMOVE_A_CELESTIAL_BODY = "Remove a celestial body";
     public static final String MSG_ADD_A_CELESTIAL_BODY = "Add a celestial body";
     public static final String MSG_PRINT_POSSIBLE_COLLISIONS = "Print possible collisions between two celestial bodies";
+    public static final String MSG_ADD_NEW_STAR_SYSTEM = "Create a new star system";
     public static final String MSG_SELECT_AN_OPTION = "Select an option:\n";
     public static final String DP = ": ";
     public static final String MSG_SAVE_ON_FILE = "Save on file";
@@ -37,6 +38,7 @@ public class Menu {
         menu.put(11, MSG_ADD_A_CELESTIAL_BODY);
         menu.put(12, MSG_REMOVE_A_CELESTIAL_BODY);
         menu.put(13, MSG_SAVE_ON_FILE);
+        menu.put(14, MSG_ADD_NEW_STAR_SYSTEM);
         menu.put(0, MSG_EXIT);
     }
     public HashMap<Integer, String> getMenu() {
