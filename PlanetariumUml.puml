@@ -1,0 +1,79 @@
+@startuml
+
+class CelestialBody {
+    - String name
+    - double mass
+    - Position position
+    + getName(): String
+    + getMass(): double
+    + getPosition(): Position
+    + toString(): String
+}
+
+class Position {
+    - ArrayList<double> coordinates
+    - int dimensions
+    + getDimensions(): int
+    + getCoordinate(int index): double
+    + setCoordinate(int index, double value)
+    + distance(Position other): double
+    + toString(): String
+    + equals(Object obj): boolean
+}
+
+class Moon {
+    + toString(): String
+}
+
+class Planet {
+    - ArrayList<Moon> moons
+    + addMoon(Moon moon)
+    + getMoons(): ArrayList<Moon>
+    + getMoon(int index): Moon
+    + removeMoon(int index): boolean
+    + removeMoon(Moon moon): boolean
+    + getTotalMass(): double
+    + toString(): String
+}
+
+class Star {
+    - ArrayList<Planet> planets
+    + addPlanet(Planet planet)
+    + getPlanet(int index): Planet
+    + removePlanet(int index): boolean
+    + removePlanet(Planet planet): boolean
+    + getTotalMass(): double
+    + toString(): String
+}
+
+class StarSystem {
+    - String name
+    - Star star
+    + getName(): String
+    + getStar(): Star
+    + setName(String name)
+    + getMass(): double
+    + getCenterOfMass(): Position
+    + getPath(String search): ArrayList<CelestialBody>
+    + getPathBetween(String start, String end): ArrayList<CelestialBody>
+    + checkCollision(String c1, String c2): boolean
+    + addCorp(CelestialBody body, String connectedTo): boolean
+    + getCorp(String name): CelestialBody
+    + getConnectedBody(CelestialBody body): CelestialBody
+    + getAllCorps(): ArrayList<CelestialBody>
+    + getDistanceBetween(String name1, String name2): double
+    + getMoonPlanet(Moon moon): Planet
+    + removeCelestialBody(CelestialBody body)
+}
+
+
+CelestialBody <|-- Moon
+CelestialBody <|-- Planet
+CelestialBody <|-- Star
+Star --* Planet : "contains"
+Planet --* Moon : "contains"
+StarSystem --> Star : "has a"
+CelestialBody *-- Position
+
+
+@enduml
