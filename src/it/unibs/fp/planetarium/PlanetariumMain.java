@@ -5,16 +5,13 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import it.kibo.fp.lib.InputData;
 
-/*
-Planetarium 2
-star StarMain 30 0 0 Planetarium
-planet Planet1 5 0 -3 StarMain
-moon Moon1 1 0 -6 Planet1
-planet Planet2 7 0 5 StarMain
-moon Moon3 2 2 3 Planet2
-moon Moon4 1 4 4 Planet2
-
-*/
+/**
+ * Classe principale del programma Planetarium.
+ * Gestisce l'interazione con l'utente e le operazioni sui sistemi stellari, stelle, pianeti e lune.
+ *
+ * @author Orizio Leonardo, Brumana Alberto, Loda Samuel
+ * @version 1.0
+ */
 
 public class PlanetariumMain {
 
@@ -58,7 +55,17 @@ public class PlanetariumMain {
     public static final int REMOVE_CELESTIAL_BODY = 12;
     public static final int SAVE_ON_FILE = 13;
     public static final int ADD_STAR_SYSTEM = 14;
+    public static final String MSG_GET_NAME = "Enter the name of the celestial body: ";
+    public static final String MSG_ERROR_CELESTIAL_BODY_NOT_FOUND = "Celestial body not found.";
+    public static final int GET_CORP_BY_NAME = 15;
+    public static final String MSG_IS_A_MOON_OF = " is a moon of ";
+    public static final String MSG_IS_NOT_A_MOON = " is not a moon";
+    public static final int GET_MOON_DIPENDENCY = 16;
 
+    /**
+     * Metodo main del programma.
+     * Inizializza il sistema stellare e gestisce il menu di interazione con l'utente.
+     */
     public static void main(String[] args) {
         ArrayList<StarSystem> starSystems = SystemBuilder.build(FILE);
         if (starSystems.isEmpty()) {
@@ -72,6 +79,12 @@ public class PlanetariumMain {
         handleMenu(menu, starSystems);
     }
 
+    /**
+     * Gestisce il menu di interazione con l'utente.
+     *
+     * @param menu Il menu da visualizzare.
+     * @param starSystems La lista dei sistemi stellari.
+     */
     private static void handleMenu(Menu menu, ArrayList<StarSystem> starSystems) {
         int choice;
 
@@ -127,10 +140,51 @@ public class PlanetariumMain {
                 case ADD_STAR_SYSTEM:
                     addStar(starSystems);
                     break;
+                case GET_CORP_BY_NAME:
+                    getCoprByName(starSystems);
+                    break;
+                case GET_MOON_DIPENDENCY:
+                    getMoonPlanetDependency(starSystems);
+                    break;
                 default:
                     break;
             }
         } while (choice != 0);
+    }
+
+    /**
+     * Ottiene la dipendenza tra una luna e un pianeta.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     */
+
+    private static void getMoonPlanetDependency(ArrayList<StarSystem> starSystems) {
+        StarSystem starSystem = getStarSystem(starSystems);
+        String name = InputData.readString(MSG_GET_NAME, true);
+        CelestialBody celestialBody = starSystem.getCorp(name);
+        if (celestialBody == null) {
+            System.out.println(MSG_ERROR_CELESTIAL_BODY_NOT_FOUND);
+        } else if (celestialBody instanceof Moon) {
+            System.out.println(celestialBody.getName() + MSG_IS_A_MOON_OF + (starSystem.getMoonPlanet((Moon) celestialBody)));
+        } else {
+            System.out.println(celestialBody.getName() + MSG_IS_NOT_A_MOON);
+        }
+    }
+
+    /**
+     * Ottiene un corpo celeste per nome.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     */
+    private static void getCoprByName(ArrayList<StarSystem> starSystems) {
+        StarSystem starSystem = getStarSystem(starSystems);
+        String name = InputData.readString(MSG_GET_NAME, true);
+        CelestialBody celestialBody = starSystem.getCorp(name);
+        if (celestialBody == null) {
+            System.out.println(MSG_ERROR_CELESTIAL_BODY_NOT_FOUND);
+        } else {
+            System.out.println(celestialBody);
+        }
     }
 
     /**
@@ -290,6 +344,11 @@ public class PlanetariumMain {
         System.out.println(starSystem.getDistanceBetween(from.toString(), to.toString()));
     }
 
+    /**
+     * Stampa il percorso tra due corpi celesti.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     */
     private static void printPathBetweenCelestialBody(ArrayList<StarSystem> starSystems) {
         StarSystem starSystem = getStarSystem(starSystems);
 
@@ -300,6 +359,12 @@ public class PlanetariumMain {
         System.out.println(starSystem.getPathBetweenToString(celestialBodyFrom.getName(), celestialBodyTo.getName()));
     }
 
+    /**
+     * Ottiene un sistema stellare dalla lista dei sistemi stellari.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     * @return Il sistema stellare selezionato.
+     */
     private static StarSystem getStarSystem(ArrayList<StarSystem> starSystems) {
         for (int i = 0; i < starSystems.size(); i++) {
             System.out.println(i + MSG_DOT + starSystems.get(i).toString());
@@ -310,6 +375,12 @@ public class PlanetariumMain {
          return starSystems.get(choose);
     }
 
+    /**
+     * Ottiene un corpo celeste da un sistema stellare.
+     *
+     * @param starSystem Il sistema stellare da cui ottenere il corpo celeste.
+     * @return Il corpo celeste selezionato.
+     */
     private static CelestialBody getCelestialBody(StarSystem starSystem) {
         int choose;
         for (int i = 0; i < starSystem.getAllCorps().size(); i++) {
@@ -321,10 +392,18 @@ public class PlanetariumMain {
         return starSystem.getAllCorps().get(choose);
     }
 
+    /**
+     * Stampa un messaggio di benvenuto.
+     */
     private static void greet(){
         System.out.println(MSG_PLANETARIUM_APP);
     }
 
+    /**
+     * Stampa il percorso verso un corpo celeste.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     */
     private static void printPathToCelestialBody(ArrayList<StarSystem> starSystems) {
         StarSystem starSystem = getStarSystem(starSystems);
         CelestialBody celestialBody = getCelestialBody(starSystem);
@@ -332,11 +411,21 @@ public class PlanetariumMain {
         System.out.println(starSystem.getPathString(celestialBody.getName()));
     }
 
+    /**
+     * Stampa il centro di massa di un sistema stellare.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     */
     private static void printCenterOfMassStarSystem(ArrayList<StarSystem> starSystems) {
         StarSystem starSystem = getStarSystem(starSystems);
         System.out.println(starSystem.getCenterOfMass().toString());
     }
 
+    /**
+     * Stampa i corpi celesti di un sistema stellare.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     */
     private static void printCelestialBodiesStarSystem(ArrayList<StarSystem> starSystems) {
         for (StarSystem starSystem : starSystems) {
             System.out.println(starSystem.getStar().toString());
@@ -349,6 +438,11 @@ public class PlanetariumMain {
         }
     }
 
+    /**
+     * Stampa le lune di un pianeta.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     */
     private static void printMoonsOfPlanet(ArrayList<StarSystem> starSystems) {
         Star star = getStar(starSystems);
 
@@ -359,6 +453,12 @@ public class PlanetariumMain {
         }
     }
 
+    /**
+     * Ottiene un pianeta da una stella.
+     *
+     * @param star La stella da cui ottenere il pianeta.
+     * @return Il pianeta selezionato.
+     */
     private static Planet getPlanet(Star star) {
         for (int i = 0; i < star.getPlanets().size(); i++) {
             System.out.println(i + MSG_DOT + star.getPlanets().get(i).toString());
@@ -369,6 +469,12 @@ public class PlanetariumMain {
         return star.getPlanets().get(planetChosen);
     }
 
+    /**
+     * Ottiene una stella da un sistema stellare.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     * @return La stella selezionata.
+     */
     private static Star getStar(ArrayList<StarSystem> starSystems) {
         for (int i = 0; i < starSystems.size(); i++) {
             System.out.println(i + MSG_DOT + starSystems.get(i).getStar().toString());
@@ -378,6 +484,11 @@ public class PlanetariumMain {
         return starSystems.get(starChosen).getStar();
     }
 
+    /**
+     * Stampa i pianeti di una stella.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     */
     private static void printPlanetsOfStar(ArrayList<StarSystem> starSystems) {
         Star star = getStar(starSystems);
 
@@ -386,17 +497,33 @@ public class PlanetariumMain {
         }
     }
 
+    /**
+     * Stampa le stelle di un sistema stellare.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     */
     private static void printStarOfStarSystem(ArrayList<StarSystem> starSystems) {
         StarSystem starSystem = getStarSystem(starSystems);
         System.out.println(starSystem.getStar().toString());
     }
 
+    /**
+     * Stampa tutti i sistemi stellari.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     */
     private static void printAllStarSystems(ArrayList<StarSystem> starSystems) {
         for (StarSystem starSystem : starSystems) {
             System.out.println(starSystem.toString());
         }
     }
 
+    /**
+     * Salva i sistemi stellari su un file.
+     *
+     * @param starSystems La lista dei sistemi stellari.
+     * @throws IOException Se si verifica un errore durante la scrittura del file.
+     */
     private static void saveOnFile(ArrayList<StarSystem> starSystems) throws IOException {
         StringBuilder sb = new StringBuilder();
 
@@ -422,6 +549,15 @@ public class PlanetariumMain {
         Files.write(new File(FILE).toPath(), sb.toString().getBytes());
     }
 
+    /**
+     * Costruisce una stringa per rappresentare un corpo celeste.
+     *
+     * @param sb Il StringBuilder in cui costruire la stringa.
+     * @param type Il tipo di corpo celeste (stella, pianeta, luna).
+     * @param name Il nome del corpo celeste.
+     * @param mass La massa del corpo celeste.
+     * @param position La posizione del corpo celeste.
+     */
     private static void buildString(StringBuilder sb, String type, String name, double mass, Position position) {
         sb.append(type).append(SPACE);
         sb.append(name).append(SPACE);

@@ -3,6 +3,13 @@ package it.unibs.fp.planetarium;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Classe che rappresenta un menu di opzioni per la gestione di un planetario.
+ * Contiene varie opzioni per visualizzare, aggiungere e rimuovere corpi celesti.
+ *
+ * @author Orizio Leonardo, Brumana Alberto, Loda Samuel
+ * @version 1.0
+ */
 public class Menu {
     public static final String MSG_PRINT_STAR_SYSTEM = "Print all star systems";
     public static final String MSG_STAR_OF_A_STAR_SYSTEM = "Print the star of a star system";
@@ -21,9 +28,14 @@ public class Menu {
     public static final String MSG_SELECT_AN_OPTION = "Select an option:\n";
     public static final String DP = ": ";
     public static final String MSG_SAVE_ON_FILE = "Save on file";
+    public static final String MSG_GET_CELESTIAL_BODY_BY_NAME = "Get celestial body by name";
+    public static final String MSG_GET_MOON_PLANET_DEPENDENCY = "Get moon planet dependency";
 
     private HashMap<Integer, String> menu = new HashMap<>();
 
+    /**
+     * Costruttore della classe Menu. Inizializza le opzioni del menu.
+     */
     public Menu() {
         menu.put(1, MSG_PRINT_STAR_SYSTEM);
         menu.put(2, MSG_STAR_OF_A_STAR_SYSTEM);
@@ -39,24 +51,43 @@ public class Menu {
         menu.put(12, MSG_REMOVE_A_CELESTIAL_BODY);
         menu.put(13, MSG_SAVE_ON_FILE);
         menu.put(14, MSG_ADD_NEW_STAR_SYSTEM);
+        menu.put(15, MSG_GET_CELESTIAL_BODY_BY_NAME);
+        menu.put(16, MSG_GET_MOON_PLANET_DEPENDENCY);
         menu.put(0, MSG_EXIT);
     }
+
+    /**
+     * Restituisce il menu delle opzioni.
+     *
+     * @return Un HashMap contenente le opzioni del menu.
+     */
     public HashMap<Integer, String> getMenu() {
         return menu;
     }
 
+    /**
+     * Imposta un nuovo menu di opzioni.
+     *
+     * @param menu Un HashMap contenente le nuove opzioni del menu.
+     */
     public void setMenu(HashMap<Integer, String> menu) {
         this.menu = menu;
     }
 
+    /**
+     * Mostra all'utente le opzioni disponibili e legge la scelta dell'utente.
+     *
+     * @return L'opzione scelta dall'utente.
+     */
     public int getChoice() {
         Scanner in = new Scanner(System.in);
-
         System.out.println(MSG_SELECT_AN_OPTION);
-
         return in.nextInt();
     }
 
+    /**
+     * Visualizza tutte le opzioni disponibili nel menu.
+     */
     public void display() {
         menu.forEach((k, v) -> System.out.println(k + DP + v));
     }

@@ -2,6 +2,14 @@ package it.unibs.fp.planetarium;
 
 import java.util.ArrayList;
 
+/**
+ * Classe che rappresenta un sistema stellare, composto da una stella e i corpi celesti che la orbitano.
+ * Permette di aggiungere, rimuovere e verificare collisioni tra i corpi celesti.
+ *
+ * @author Orizio Leonardo, Brumana Alberto, Loda Samuel
+ * @version 1.0
+ */
+
 public class StarSystem {
     public static final String MINUS_SIGN = " - ";
     public static final String NEXT = ">";
@@ -9,31 +17,61 @@ public class StarSystem {
     public static final String MSG_CANNOT_ADD_A_MOON_TO_A_STAR = "Cannot add a moon to a star";
     public static final String MSG_CANNOT_ADD_PLANET_TO_PLANET = "Cannot add a planet to a planet";
     public static final String MSG_ERROR_A_BODY_NULL = "One of the bodies is null";
-    public static final String MSG_ERROR_CANNOT_REMOVE_STAR = "Cannot remove a star";
     private String name;
     private final Star star;
 
+    /**
+     * Costruttore della classe StarSystem.
+     *
+     * @param name Il nome del sistema stellare.
+     * @param star La stella centrale del sistema.
+     */
     public StarSystem(String name, Star star) {
         this.name = name;
         this.star = star;
     }
 
+    /**
+     * Restituisce il nome del sistema stellare.
+     *
+     * @return Il nome del sistema stellare.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Restituisce la stella centrale del sistema stellare.
+     *
+     * @return La stella centrale del sistema stellare.
+     */
     public Star getStar() {
         return star;
     }
 
+    /**
+     * Imposta il nome del sistema stellare.
+     *
+     * @param name Il nuovo nome del sistema stellare.
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Restituisce la massa totale del sistema stellare.
+     *
+     * @return La massa totale del sistema stellare.
+     */
     public double getMass() {
         return star.getTotalMass();
     }
 
+    /**
+     * Restituisce la posizione del sistema stellare.
+     *
+     * @return La posizione del sistema stellare.
+     */
     public Position getCenterOfMass() {
         int dimensions = star.getPosition().getDimensions();
         Position ret = new Position(dimensions);
@@ -55,10 +93,20 @@ public class StarSystem {
         return ret;
     }
 
+    /**
+     * Restituisce una rappresentazione in forma di stringa del sistema stellare.
+     *
+     * @return Una stringa che rappresenta il sistema stellare.
+     */
     public String toString() {
         return name + MINUS_SIGN + star.toString();
     }
 
+    /**
+     * Restituisce una rappresentazione in forma di stringa del sistema stellare con i corpi celesti.
+     *
+     * @return Una stringa che rappresenta il sistema stellare con i corpi celesti.
+     */
     public ArrayList<CelestialBody> getPath(String search) {
         ArrayList<CelestialBody> path = new ArrayList<>();
 
@@ -88,11 +136,24 @@ public class StarSystem {
         return path;
     }
 
+    /**
+     * Restituisce una rappresentazione in forma di stringa del percorso verso un corpo celeste.
+     *
+     * @param search Il nome del corpo celeste da cercare.
+     * @return Una stringa che rappresenta il percorso verso il corpo celeste.
+     */
     public String getPathString(String search) {
         ArrayList<CelestialBody> path = getPath(search);
         return concatenatePath(path);
     }
 
+    /**
+     * Restituisce una rappresentazione in forma di stringa del percorso tra due corpi celesti.
+     *
+     * @param fromName Il nome del corpo celeste di partenza.
+     * @param toName   Il nome del corpo celeste di arrivo.
+     * @return Una stringa che rappresenta il percorso tra i due corpi celesti.
+     */
     public ArrayList<CelestialBody> getPathBetween(String fromName, String toName) {
         ArrayList<CelestialBody> path = new ArrayList<>();
         ArrayList<CelestialBody> pathToFrom = getPath(fromName);
@@ -118,11 +179,24 @@ public class StarSystem {
         return path;
     }
 
+    /**
+     * Restituisce una rappresentazione in forma di stringa del percorso tra due corpi celesti.
+     *
+     * @param fromName Il nome del corpo celeste di partenza.
+     * @param toName   Il nome del corpo celeste di arrivo.
+     * @return Una stringa che rappresenta il percorso tra i due corpi celesti.
+     */
     public String getPathBetweenToString(String fromName, String toName) {
         ArrayList<CelestialBody> path = getPathBetween(fromName, toName);
         return concatenatePath(path);
     }
 
+    /**
+     * Restituisce una rappresentazione in forma di stringa del percorso tra due corpi celesti.
+     *
+     * @param path La lista dei corpi celesti che compongono il percorso.
+     * @return Una stringa che rappresenta il percorso tra i due corpi celesti.
+     */
     private static String concatenatePath(ArrayList<CelestialBody> path) {
         StringBuilder ret = new StringBuilder();
         for (int i = 0; i < path.size(); i++) {
@@ -134,6 +208,13 @@ public class StarSystem {
         return ret.toString();
     }
 
+    /**
+     * Verifica se due corpi celesti collidono.
+     *
+     * @param c1 Il nome del primo corpo celeste.
+     * @param c2 Il nome del secondo corpo celeste.
+     * @return true se i corpi celesti collidono, false altrimenti.
+     */
     public boolean checkCollision(String c1, String c2) {
         CelestialBody body1 = getCorp(c1);
         CelestialBody body2 = getCorp(c2);
@@ -228,6 +309,13 @@ public class StarSystem {
         return false;
     }
 
+    /**
+     * Aggiunge un corpo celeste al sistema stellare.
+     *
+     * @param body Il corpo celeste da aggiungere.
+     * @param connectedTo Il nome del corpo celeste a cui è connesso.
+     * @return true se il corpo celeste è stato aggiunto con successo, false altrimenti.
+     */
     public boolean addCorp(CelestialBody body, String connectedTo) {
         if (connectedTo.equals(name)){
             throw new RuntimeException(MSG_STAR_SYSTEM_ALREADY_HAS_A_STAR);
@@ -255,6 +343,12 @@ public class StarSystem {
         return false;
     }
 
+    /**
+     * Restituisce un corpo celeste in base al nome fornito.
+     *
+     * @param name Il nome del corpo celeste da cercare.
+     * @return Il corpo celeste corrispondente al nome fornito, o null se non trovato.
+     */
     public CelestialBody getCorp(String name) {
         if (star.getName().equals(name)) {
             return star;
@@ -275,6 +369,12 @@ public class StarSystem {
         return null;
     }
 
+    /**
+     * Restituisce il corpo celeste connesso a un altro corpo celeste.
+     *
+     * @param body Il corpo celeste di cui trovare il corpo connesso.
+     * @return Il corpo celeste connesso, o null se non trovato.
+     */
     public CelestialBody getConnectedBody(CelestialBody body){
         if (body instanceof Star){
             return null;
@@ -298,6 +398,11 @@ public class StarSystem {
         return null;
     }
 
+    /**
+     * Restituisce una lista di tutti i corpi celesti nel sistema stellare.
+     *
+     * @return Un ArrayList contenente tutti i corpi celesti nel sistema stellare.
+     */
     public ArrayList<CelestialBody> getAllCorps() {
         ArrayList<CelestialBody> corps = new ArrayList<>();
         corps.add(star);
@@ -308,6 +413,13 @@ public class StarSystem {
         return corps;
     }
 
+    /**
+     * Restituisce la distanza tra due corpi celesti.
+     *
+     * @param name1 Il nome del primo corpo celeste.
+     * @param name2 Il nome del secondo corpo celeste.
+     * @return La distanza tra i due corpi celesti.
+     */
     public double getDistanceBetween(String name1, String name2) {
         ArrayList<CelestialBody> path = getPathBetween(name1, name2);
         double distance = 0;
@@ -319,7 +431,13 @@ public class StarSystem {
         return distance;
     }
 
-    private Planet getMoonPlanet(Moon moon) {
+    /**
+     * Restituisce il pianeta a cui la luna appartiene.
+     *
+     * @param moon La luna di cui trovare il pianeta.
+     */
+
+    public Planet getMoonPlanet(Moon moon) {
         for (Planet p : star.getPlanets()) {
             if (p.getMoons().contains(moon)) {
                 return p;
@@ -328,6 +446,11 @@ public class StarSystem {
         return null;
     }
 
+    /**
+     * Rimuove un corpo celeste dal sistema stellare.
+     *
+     * @param body Il corpo celeste da rimuovere.
+     */
     public void removeCelestialBody(CelestialBody body) {
         if (body instanceof Planet) {
             star.removePlanet((Planet) body);
