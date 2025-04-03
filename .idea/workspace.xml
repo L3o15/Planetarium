@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6ff44cc5-7764-4145-8682-4f34b035468a" name="Changes" comment="save on file function">
+    <list default="true" id="6ff44cc5-7764-4145-8682-4f34b035468a" name="Changes" comment="refactoring main and reset input file">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java" afterDir="false" />
     </list>
-    <list id="8013916b-be69-43f1-8faf-4ba18372d785" name="Changes by albertobrumana" comment="" />
-    <list id="71bf9fe3-1ade-46d3-b57a-bbff26293cea" name="Changes by Samuel" comment="" />
+    <list id="8013916b-be69-43f1-8faf-4ba18372d785" name="Changes by albertobrumana" comment="javadoc" />
+    <list id="71bf9fe3-1ade-46d3-b57a-bbff26293cea" name="Changes by Samuel" comment="Changes by Samuel" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,12 +33,12 @@
     &quot;assignee&quot;: &quot;L3o15&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/L3o15/Planetarium",
-    "accountId": "037e0fd3-d3c9-4b56-877a-d553df9bd96a"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:/L3o15/Planetarium.git&quot;,
+    &quot;accountId&quot;: &quot;4bc62b0c-854e-4d9c-9810-4f2e3dbf16ea&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -71,7 +71,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;,
@@ -86,9 +86,9 @@
       <recent name="$PROJECT_DIR$/src/com/kibo/pgar/lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/lib" />
       <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/it/unibs/fp/planetarium" />
     </key>
   </component>
@@ -136,8 +136,7 @@
       <workItem from="1743178778005" duration="3217000" />
       <workItem from="1743238780330" duration="9148000" />
       <workItem from="1743248047247" duration="3049000" />
-      <workItem from="1743444648139" duration="5493000" />
-      <workItem from="1743623421105" duration="2259000" />
+      <workItem from="1743611310878" duration="115000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1742644812814</created>
@@ -210,7 +209,39 @@
       <option name="project" value="LOCAL" />
       <updated>1743247765067</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="refactoring and start from zero function">
+      <option name="closed" value="true" />
+      <created>1743605038257</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1743605038257</updated>
+    </task>
+    <task id="LOCAL-00011" summary="javadoc">
+      <option name="closed" value="true" />
+      <created>1743608846439</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1743608846439</updated>
+    </task>
+    <task id="LOCAL-00012" summary="javadoc">
+      <option name="closed" value="true" />
+      <created>1743608904644</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1743608904644</updated>
+    </task>
+    <task id="LOCAL-00013" summary="refactoring main and reset input file">
+      <option name="closed" value="true" />
+      <created>1743609091878</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1743609091878</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,7 +275,11 @@
     <MESSAGE value="Import lib" />
     <MESSAGE value="Refactoring constants" />
     <MESSAGE value="Added collisions and path finding functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added collisions and path finding functions" />
+    <MESSAGE value="refactoring and start from zero function" />
+    <MESSAGE value="Changes by Samuel" />
+    <MESSAGE value="javadoc" />
+    <MESSAGE value="refactoring main and reset input file" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring main and reset input file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -255,14 +290,9 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java</url>
-          <line>143</line>
+          <url>file://$PROJECT_DIR$/src/it/unibs/fp/planetarium/StarSystem.java</url>
+          <line>378</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/it/unibs/fp/planetarium/PlanetariumMain.java</url>
-          <line>145</line>
-          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

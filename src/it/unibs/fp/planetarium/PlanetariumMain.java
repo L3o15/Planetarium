@@ -61,6 +61,7 @@ public class PlanetariumMain {
     public static final String MSG_IS_A_MOON_OF = " is a moon of ";
     public static final String MSG_IS_NOT_A_MOON = " is not a moon";
     public static final int GET_MOON_DIPENDENCY = 16;
+    public static final String MES_ERROR_POSITION_ALREADY_IN_USE = "There's already a corp at the selected position";
 
     /**
      * Metodo main del programma.
@@ -287,7 +288,7 @@ public class PlanetariumMain {
 
         for (CelestialBody cb : starSystem.getAllCorps() ) {
             if (cb.getPosition().equals(position)) {
-                throw new RuntimeException("There's already a corp at the selected position");
+                throw new RuntimeException(MES_ERROR_POSITION_ALREADY_IN_USE);
             }
         }
 
@@ -309,7 +310,7 @@ public class PlanetariumMain {
 
         for (CelestialBody cb : starSystem.getAllCorps() ) {
             if (cb.getPosition().equals(position)) {
-                throw new RuntimeException("There's already a corp at the selected position");
+                throw new RuntimeException(MES_ERROR_POSITION_ALREADY_IN_USE);
             }
         }
 
